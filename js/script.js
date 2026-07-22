@@ -207,3 +207,236 @@ document.addEventListener("DOMContentLoaded", () => {
     highlightNav();
 
 });
+/* ==========================================================
+   Academic Portfolio
+   script.js - Part 2
+   Features:
+   ✓ Smooth Scrolling
+   ✓ Scroll Reveal
+   ✓ Animated Counters
+   ✓ Typing Effect
+   ✓ Lazy Image Loading
+   ✓ Keyboard Shortcut
+   ✓ Page Loader
+   ========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       Smooth Scrolling
+    ===================================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+        anchor.addEventListener("click", function (e) {
+
+            const target = document.querySelector(
+                this.getAttribute("href")
+            );
+
+            if (!target) return;
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+
+                behavior: "smooth",
+                block: "start"
+
+            });
+
+        });
+
+    });
+
+    /* =====================================================
+       Scroll Reveal Animation
+    ===================================================== */
+
+    const revealElements = document.querySelectorAll(
+
+        ".card,\
+         .research-card,\
+         .publication,\
+         .conference,\
+         .stat,\
+         .timeline-item,\
+         .contact-card"
+
+    );
+
+    const revealObserver = new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("fade-up");
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        },
+
+        {
+
+            threshold: 0.15
+
+        }
+
+    );
+
+    revealElements.forEach(item => {
+
+        revealObserver.observe(item);
+
+    });
+
+    /* =====================================================
+       Animated Statistics
+    ===================================================== */
+
+    const stats = document.querySelectorAll(".stat h3");
+
+    const counterObserver = new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting) return;
+
+                const counter = entry.target;
+
+                const value = counter.innerText;
+
+                const number = parseInt(value);
+
+                if (isNaN(number)) return;
+
+                let current = 0;
+
+                const increment = Math.ceil(number / 40);
+
+                const timer = setInterval(() => {
+
+                    current += increment;
+
+                    if (current >= number) {
+
+                        counter.innerText = number + "+";
+
+                        clearInterval(timer);
+
+                    } else {
+
+                        counter.innerText = current;
+
+                    }
+
+                }, 30);
+
+                counterObserver.unobserve(counter);
+
+            });
+
+        }
+
+    );
+
+    stats.forEach(stat => {
+
+        counterObserver.observe(stat);
+
+    });
+
+    /* =====================================================
+       Typing Effect
+    ===================================================== */
+
+    const heroTitle = document.querySelector(".hero h1");
+
+    if (heroTitle) {
+
+        const original = heroTitle.innerText;
+
+        heroTitle.innerText = "";
+
+        let i = 0;
+
+        function typeWriter() {
+
+            if (i < original.length) {
+
+                heroTitle.innerHTML += original.charAt(i);
+
+                i++;
+
+                setTimeout(typeWriter, 70);
+
+            }
+
+        }
+
+        typeWriter();
+
+    }
+
+    /* =====================================================
+       Lazy Loading Images
+    ===================================================== */
+
+    const images = document.querySelectorAll("img");
+
+    images.forEach(img => {
+
+        img.loading = "lazy";
+
+    });
+
+    /* =====================================================
+       Keyboard Shortcut
+       Press D to Toggle Dark Mode
+    ===================================================== */
+
+    document.addEventListener("keydown", e => {
+
+        if (e.key.toLowerCase() !== "d") return;
+
+        const button = document.querySelector(".theme-toggle");
+
+        if (button) {
+
+            button.click();
+
+        }
+
+    });
+
+    /* =====================================================
+       Fade Out Loader
+    ===================================================== */
+
+    const loader = document.querySelector(".loader");
+
+    if (loader) {
+
+        window.addEventListener("load", () => {
+
+            loader.style.opacity = "0";
+
+            setTimeout(() => {
+
+                loader.style.display = "none";
+
+            }, 600);
+
+        });
+
+    }
+
+});
