@@ -1790,3 +1790,77 @@ text-decoration:none;
 }
 
 /* ---------- End of Stylesheet ---------- */
+/* Smooth Transition */
+
+body{
+
+    transition:
+        background .4s,
+        color .4s;
+
+}
+
+/* Image Hover */
+
+img{
+
+    transition:.4s;
+
+}
+
+img:hover{
+
+    transform:scale(1.02);
+
+}
+
+/* Button Hover */
+
+.btn{
+
+    transition:.35s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* Selection */
+
+::selection{
+
+    background:#328CC1;
+    color:white;
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ececec;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#328CC1;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#0B3C5D;
+
+}
