@@ -1182,10 +1182,8 @@ width:100%;
 
 .contact-wrapper{
 
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    align-items:start;
+    display:flex;
+    justify-content:center;
 
 }
 
@@ -1196,6 +1194,7 @@ width:100%;
     gap:25px;
 
 }
+
 
 .contact-card{
 
